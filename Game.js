@@ -6,6 +6,7 @@ function Game(canvas){
     //this.croqueta = new component(30, 30, "CROQUETA.png", 10, 120, "image");;
     this.platos = [];
     this.amigos = [];
+    this.toothpicks = [];
     this.isGameOver = false;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
@@ -39,10 +40,14 @@ Game.prototype.startGame = function() {
             var newPlato = new Plato(this.canvas, randomY);
             this.platos.push(newPlato); //llama a propiedad arriba ^^
             //----------AMIGOS
-            var randomYamigos = Math.random() * this.canvas.height - 80; //how spaced amigos
+            var randomYamigos = Math.random() * this.canvas.height - 150; //how spaced amigos
             var newAmigo = new Amigo(this.canvas, randomYamigos);
+            console.log(randomYamigos)
             this.amigos.push(newAmigo); //llama a propiedad arriba ^^
             counter = 0; //sets back to 0
+            //----------TOOTHPICKS
+            //how spaced plates 
+            
         }
 
         // if(counter === 120){  //framerate 60 fps - 120 2 secs
@@ -80,7 +85,13 @@ Game.prototype.startGame = function() {
 
 //update--vv
 Game.prototype.update = function() {
+    this.handleShooting()
     this.croqueta.move();
+    if(this.toothpicks) {
+        this.toothpicks.forEach(function(toothpick) {
+            toothpick.move();
+        })
+    }
     this.platos.forEach(function(plato) {
         plato.move();
     })
@@ -97,6 +108,11 @@ Game.prototype.clear = function() {
 //draw--vv
 Game.prototype.draw = function() {
     this.croqueta.draw();
+    if(this.toothpicks) {
+        this.toothpicks.forEach(function(toothpick) {
+            toothpick.draw();
+        })
+    }
     this.platos.forEach(function(plato) {
         plato.draw();
     })
@@ -112,8 +128,33 @@ Game.prototype.draw = function() {
 
 
 
-//CONDICIONES - collisiones btwn croqueta and plato - lives 3
+//CONDICIONES - 
 Game.prototype.checkCollisions = function() { //llammar checkCollisions en el loop
+    //-----collisiones btwn toothpick and enemy
+    this.platos.forEach((plato, platoIndex) =>{
+        this.toothpicks.forEach((toothpick, index) => {   //TWO FOR EACH BECAUSE THERE ARE TWO ARRAYS
+            var rightLeft = plato.x + plato.width >= toothpick.x; //ca
+            var leftRight = plato.x <= toothpick.x + toothpick.width; //ac
+            var bottomTop = plato.y + plato.height >= toothpick.y; //db
+            var topBottom = plato.y <= toothpick.y + toothpick.height; //bd
+    
+            //donde tenemos que comprobar si verdaderos o no
+            if (rightLeft && leftRight && bottomTop && topBottom) {
+                // console.log('collision') --- we need it to say game over, minus lives 
+                console.log("shooting plate")
+                this.toothpicks.splice(index, 1);
+                this.platos.splice(index,1);
+    
+                
+            }
+        })
+    })
+
+
+
+
+
+    //-----collisiones btwn croqueta and plato - lives 3
     this.platos.forEach((plato, index) => {   //arrow function
         var rightLeft = this.croqueta.x + this.croqueta.width >= plato.x; //ca
         var leftRight = this.croqueta.x <= plato.x + plato.width; //ac
@@ -133,7 +174,10 @@ Game.prototype.checkCollisions = function() { //llammar checkCollisions en el lo
             }
         }
     })
-    //-----
+
+
+
+    //-----collisiones btwn croqueta and amigos
     this.amigos.forEach((amigo, index) => {   //arrow function
         var rightLeft = this.croqueta.x + this.croqueta.width >= amigo.x; //ca
         var leftRight = this.croqueta.x <= amigo.x + amigo.width; //ac
@@ -151,7 +195,6 @@ Game.prototype.checkCollisions = function() { //llammar checkCollisions en el lo
             
             if(this.croqueta.rescatado) {
                 //cambiar estado de juego
-                console.log('good job');
                 this.difficulty = 120 - 10 * this.croqueta.rescatado;
                 //this.isGameOver = true;
             }
@@ -185,4 +228,12 @@ Game.prototype.saved = function(){
 
 Game.prototype.gameOverCallback = function(buildGameOverScreen) { 
     this.onGameOver = buildGameOverScreen;
+}
+
+Game.prototype.handleShooting = function(){
+    if(this.croqueta.isShooting){
+        var newToothpick = new Toothpick(this.canvas, this.croqueta.y);
+        this.toothpicks.push(newToothpick); //llama a propiedad arriba ^^
+    }
+    this.croqueta.isShooting = false;
 }

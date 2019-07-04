@@ -65,12 +65,18 @@ function main(){
 
 
 
+
+
         // para mover el jugador
         document.addEventListener('keydown', function(event) { 
+            console.log(event)
             if(event.key === 'ArrowDown') { //ir hacía abajo
                 gameInstance.croqueta.setDirection(1);
             } else if(event.key === 'ArrowUp') { //ir hacía arriba
                 gameInstance.croqueta.setDirection(-1);
+            } else if(event.keyCode === 32) {
+  
+                gameInstance.croqueta.shoot();
             }
         });
 

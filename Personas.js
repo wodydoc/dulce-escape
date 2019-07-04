@@ -24,7 +24,7 @@ function Amigo(canvas, randomYamigos) { //canvas es parametro
 //metodos....
 Amigo.prototype.move = function() {
     this.x = this.x + this.direction * this.velocity; // siempre reducir por tres
-    this.runSpace();
+    // this.runSpace();
 }
 
 Amigo.prototype.draw = function() {
@@ -34,8 +34,8 @@ Amigo.prototype.draw = function() {
 }
 
 
-Amigo.prototype.runSpace = function() {
-    if (385 > this.canvas.height - this.height) {
-        this.y = this.canvas.height - this.height;
-    }
-}
+// Amigo.prototype.runSpace = function() {
+//     if (385 > this.canvas.height - this.height) {
+//         this.y = this.canvas.height - this.height;
+//     }
+// }

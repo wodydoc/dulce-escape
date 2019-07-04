@@ -12,8 +12,9 @@ function Croqueta(canvas) { //propieades...
     this.rescatado = 0;
     this.velocity = 1;
     this.direction = 1;
-    this.color = 'darkorange';
+    this.color = 'rgb(180, 72, 10)';
     this.gravity = 0.98;
+    this.isShooting = false;
  
     //CROQUETA Image object.
     this.img = new Image();
@@ -33,8 +34,8 @@ Croqueta.prototype.move = function() {
 
 }
 Croqueta.prototype.draw = function() {
-    this.ctx.fillStyle = this.color; //ctx is the pen
-    this.ctx.fillRect(this.x, this.y, this.width, this.height)
+    // this.ctx.fillStyle = this.color; //ctx is the pen
+    // this.ctx.fillRect(this.x, this.y, this.width, this.height)
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height) 
 
         // ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
@@ -56,6 +57,10 @@ Croqueta.prototype.checkBottom = function() {
     if (this.y > this.canvas.height - this.height) {
         this.y = this.canvas.height - this.height;
     }
+}
+
+Croqueta.prototype.shoot = function(){
+    this.isShooting = true;
 }
 
 
