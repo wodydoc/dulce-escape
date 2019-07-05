@@ -1,115 +1,249 @@
 /* ---- reset ---- */
 
 html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
-  
-  /* ---- typography ---- */
-  
-  body {
-    color: #222;
-    font-family: 'VT323';
-    font-size: 26px;
-    line-height: 147%;
-  }
-  
-  h1 {
-    font-family: 'VT323';
-    font-size: 120px;
-    color: #222;
-    text-transform: uppercase;
-    line-height: 83px;
-  }
-  
-  h2 {}
-  
-  h3 {}
-  
-  p {
-    margin: 0;
-  }
-  
-  
-  
-  /* ---- layout ---- */
-  body {
-    background-color: rgb(180, 72, 10);
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-  }
-  
-  #site-header {
-    padding: 30px 0;
-    color: white;
-    background: #111;
-  }
-  
-  #site-footer {
-    color: white;
-    padding: 60px 0;
-    background: #111;
-  }
-  
-  #site-main {
-    margin-bottom: 60px;
-  }
-  
-  .container {
-    margin: 0 20px;
-  }
-  
-  .section {
-    margin-bottom: 20px;
-    padding-top: 20px;
-  }
-  
-  @media (min-width: 768px) {
-    .container {
-      max-width: 728px;
-      margin: 0 auto;
-    }
-  }
-  
-  
-  
-  
-  /* ---- components ---- */
-  
-  .button {
-    width: 100%;
-    background-color: blue;
-    color: #fff;
-    border: 1px solid #fff
-  }
-  
-  .button-alt {
-    color: blue;
-    background-color: #fff;
-  }
-  
-  /* ---- section ---- */
-  
-  section.testimonials {
-    // ...
-  }
-  
-  section.testimonials .button {
-    margin-bottom: 10px;
-  }
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-  canvas {
-    border: 1px solid black;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---- typography ---- */
+
+body {
+  color: #222;
+  font-family: "VT323";
+  font-size: 26px;
+  line-height: 147%;
+}
+
+h1 {
+  font-family: "Brush Script MT", cursive;
+  font-size: 120px;
+  font-style: normal;
+  font-weight: 700;
+  color: #222;
+  /* text-transform: uppercase; */
+  line-height: 83px;
+}
+
+h2 {
+  font-family: "Brush Script MT", cursive;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 700;
+  color: #146acc;
+  /* text-transform: uppercase; */
+  line-height: 83px;
+}
+
+h3 {
+  background-color:rgb(255, 232, 189);
+  color: maroon;
+  border: 1px solid maroon;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 40px;
+  text-align: center;
+
+}
+
+p {
+  font-family: "Brush Script MT", cursive;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  color: darkblue;
+  /* text-transform: uppercase; */
+  line-height: 83px;
+}
+
+
+
+/* ---- layout ---- */
+body {
+  background-image: url("picnic.jpg");
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+}
+
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.splash-screen .container {
+  display: flex;
+  flex-direction: row;
+  background-color: wheat;
+  justify-content: center;
+  padding: 3%;
+  
+}
+
+.menu-screen .container {
+  display: flex;
+  flex-direction: column;
+  background-color: wheat;
+  justify-content: center;
+  padding: 3%;
+  width:87vw;
+  height:54vw;
+  
+}
+
+.undertext {
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color: darkblue;
+  /* text-transform: uppercase; */
+  line-height: 70px;
+}
+
+
+.underundertext {
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color:darkgoldenrod;
+  /* text-transform: uppercase; */
+  line-height: 70px;
+}
+.life {
+  display: flex;
+  flex-direction: row;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  background-color: wheat;
+  color: maroon;
+  position: relative;
+  right: -5%;
+}
+.saved {
+  display: flex;
+  flex-direction: row;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  color: darkblue;
+  position: relative;
+  right: -23%;
+}
+
+.game-title {
+  display: flex;
+  flex-direction: row;
+}
+.button-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 40vh;
+}
+.croqueta-menu {
+  max-height: 88%;
+}
+.croqueta-menu img {
+  animation: bounce 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5,0.05,1,.5);
+  animation-iteration-count: infinite;
+  max-height: 50%;
+}
+
+@keyframes bounce {
+  from { transform: translate3d(0, 0, 0);     }
+  to   { transform: translate3d(0, 200px, 0); }
+}
+
+.buttons {
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-screen {
+  display: row;
+  display: flex;
+  flex-direction: column;
+}
+.menu-screen img {
+  position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.game-over-screen {
+  display: flex;
+  flex-direction: row;
+}
+
+.message {
+  display: flex;
+}
+
+.close-button {
+  background-color: black;
+  color: wheat;
+  border: 1px solid maroon;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 29px;
+  position: relative;
+  top: -82px;
+  right: -82%;
+}
+/* ---- components ---- */
+
+button {
+  background-color: slategray;
+  color: wheat;
+  border: 2px solid black;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 29px;
+}
+
+/* ---- section ---- */
+
+canvas {
+  background-image: url("./TASCA-03-01.png");
+  background-position: center;
+  background-size: cover;
+  display:flex;
+  width: 800px;
+  margin: auto;
+  position: relative;
+  border: 1px solid black;
+}
+
+.info-game {
+  display: flex;
+  flex-direction: row;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  background-color: wheat;
+  color: darkblue;
 }

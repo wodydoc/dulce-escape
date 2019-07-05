@@ -28,14 +28,9 @@ Amigo.prototype.move = function() {
 }
 
 Amigo.prototype.draw = function() {
-    this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    // this.ctx.fillStyle = this.color;
+    // this.ctx.fillRect(this.x, this.y, this.width, this.height);
 }
 
 
-// Amigo.prototype.runSpace = function() {
-//     if (385 > this.canvas.height - this.height) {
-//         this.y = this.canvas.height - this.height;
-//     }
-// }
